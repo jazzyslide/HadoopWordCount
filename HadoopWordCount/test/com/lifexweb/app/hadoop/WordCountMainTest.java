@@ -17,12 +17,12 @@ public class WordCountMainTest {
 	public void setUp() throws Exception {
 		mapper = new WordCountMapper();
 		reducer = new WordCountReducer();
-		driver = new MapReduceDriver(mapper, reducer);
+		driver = new MapReduceDriver<LongWritable, Text, Text, IntWritable, Text, IntWritable > (mapper, reducer);
 	}
 
 	@Test
 	public final void testMain() {
-		driver.withInput(new LongWritable(0), new Text("word count test test"))
+		driver.withInput(new LongWritable(0), new Text("word.count, test Test"))
 		.withOutput(new Text("count"), new IntWritable(1))
 		.withOutput(new Text("test"), new IntWritable(2))
 		.withOutput(new Text("word"), new IntWritable(1))
