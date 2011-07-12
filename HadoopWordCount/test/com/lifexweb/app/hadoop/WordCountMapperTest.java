@@ -42,27 +42,16 @@ public class WordCountMapperTest extends TestCase {
 		.runTest();
 		mapDriver.resetOutput();
 
-		//ドットが入った場合のテスト
-		mapDriver.withInput(new LongWritable(0), new Text("this is a pen.and a pen."))
+		//ドット、カンマ、アポストロフィが入った場合のテスト
+		mapDriver.withInput(new LongWritable(0), new Text("this is a pen, and a pen's holder."))
 		.withOutput(new Text("this"), new IntWritable(1))
 		.withOutput(new Text("is"), new IntWritable(1))
 		.withOutput(new Text("a"), new IntWritable(1))
 		.withOutput(new Text("pen"), new IntWritable(1))
 		.withOutput(new Text("and"), new IntWritable(1))
 		.withOutput(new Text("a"), new IntWritable(1))
-		.withOutput(new Text("pen"), new IntWritable(1))
-		.runTest();
-		mapDriver.resetOutput();
-
-		//ドットが入った場合のテスト
-		mapDriver.withInput(new LongWritable(0), new Text("this is a pen,and a pen."))
-		.withOutput(new Text("this"), new IntWritable(1))
-		.withOutput(new Text("is"), new IntWritable(1))
-		.withOutput(new Text("a"), new IntWritable(1))
-		.withOutput(new Text("pen"), new IntWritable(1))
-		.withOutput(new Text("and"), new IntWritable(1))
-		.withOutput(new Text("a"), new IntWritable(1))
-		.withOutput(new Text("pen"), new IntWritable(1))
+		.withOutput(new Text("pen\'s"), new IntWritable(1))
+		.withOutput(new Text("holder"), new IntWritable(1))
 		.runTest();
 		mapDriver.resetOutput();
 		
