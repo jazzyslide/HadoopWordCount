@@ -4,7 +4,6 @@
 package com.lifexweb.app.hadoop;
 
 import java.io.IOException;
-import java.util.Date;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
@@ -49,7 +48,7 @@ public class WordCountMain {
 		job.setNumReduceTasks(1);
 		
 		FileInputFormat.setInputPaths(job, new Path(args[0]));
-		FileOutputFormat.setOutputPath(job, new Path(args[1] + new Date().getTime()));
+		FileOutputFormat.setOutputPath(job, new Path(args[1]));
 		
 		boolean success = job.waitForCompletion(true);
 		if (success) System.out.println("Job SUCCESS!!!");
