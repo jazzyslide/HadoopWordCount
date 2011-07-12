@@ -22,9 +22,10 @@ public class WordCountMainTest {
 
 	@Test
 	public final void testMain() {
-		driver.withInput(new LongWritable(0), new Text("word.count, test Test  TEST"))
+		driver.withInput(new LongWritable(0), new Text("word.count, test's Test  TEST"))
 		.withOutput(new Text("count"), new IntWritable(1))
-		.withOutput(new Text("test"), new IntWritable(3))
+		.withOutput(new Text("test"), new IntWritable(2))
+		.withOutput(new Text("test's"), new IntWritable(1))
 		.withOutput(new Text("word"), new IntWritable(1))
 		.runTest();
 	}
